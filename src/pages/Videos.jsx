@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React from "react";
 import { useParams } from "react-router";
+import FakeYoutube, { search } from "../api/fakeYoutube";
+import Youtube from "../api/youtube";
 import VideoCard from "../components/VideoCard";
 
 export default function Videos() {
@@ -11,10 +12,9 @@ export default function Videos() {
     error,
     data: videos,
     // useQuery: 비동기 상태 관리를 해주는 라이브러리
-  } = useQuery(["videos", keyword], async () => {
-    return axios
-      .get(`/videos/${keyword ? "search" : "popular"}.json`)
-      .then((res) => res.data.items);
+  } = useQuery(["videos", keyword], () => {
+    const youtube = new FakeYoutube();
+    return youtube.search(keyword);
   });
 
   return (
