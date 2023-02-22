@@ -11,20 +11,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   /* 가로,세로 화면비율 + 중앙정렬 */
-  width: 100vw;
+  /* width: 100vw;
   height: 100vh;
   display: flex;
   text-align: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 
-  /* tailwind 문법을 굳이 사용할면 이렇게  */
+  width: 100vw;
+  height: 100vh;
+  @apply flex flex-col items-center;
   @apply bg-zinc-900 text-gray-50;
+}
 
-  #root {
-    /* max-width  */
-    @apply w-full max-w-screen-2xl;
-  }
+#root {
+  @apply w-full max-w-screen-2xl;
 }
 
 code {
